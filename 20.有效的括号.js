@@ -37,6 +37,8 @@ var isValid = function (s) {
       ) {
         // 出栈 
         stack.pop();
+      } else {
+        return false;
       }
     }
   }
