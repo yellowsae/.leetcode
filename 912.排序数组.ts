@@ -37,27 +37,42 @@
 
 
 // 并归排序
+// function sortArray(nums: number[]): number[] {
+//   function mergeSort(arr) {
+//     if (arr.length <= 1) return arr;
+//     let mid = Math.floor(arr.length / 2);
+//     let left = arr.slice(0, mid);
+//     let right = arr.slice(mid);
+//     let orderLeft = mergeSort(left)
+//     let orderRight = mergeSort(right)
+//     let res: number[] = []
+//     while (orderLeft.length || orderRight.length) {
+//       if (orderLeft.length && orderRight.length) {
+//         res.push(orderLeft[0] < orderRight[0] ? orderLeft.shift() : orderRight.shift())
+//       } else if (orderLeft.length) {
+//         res.push(orderLeft.shift())
+//       } else if (orderRight.length) {
+//         res.push(orderRight.shift())
+//       }
+//     }
+//     return res
+//   }
+//   return mergeSort(nums);
+// }
+
+
+
+
+// 冒泡排序
 function sortArray(nums: number[]): number[] {
-  function mergeSort(arr) {
-    if (arr.length <= 1) return arr;
-    let mid = Math.floor(arr.length / 2);
-    let left = arr.slice(0, mid);
-    let right = arr.slice(mid);
-    let orderLeft = mergeSort(left)
-    let orderRight = mergeSort(right)
-    let res: number[] = []
-    while (orderLeft.length || orderRight.length) {
-      if (orderLeft.length && orderRight.length) {
-        res.push(orderLeft[0] < orderRight[0] ? orderLeft.shift() : orderRight.shift())
-      } else if (orderLeft.length) {
-        res.push(orderLeft.shift())
-      } else if (orderRight.length) {
-        res.push(orderRight.shift())
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = 0; j < nums.length - 1 - i; j++) {
+      if (nums[j] > nums[j + 1]) {
+        [nums[j], nums[j + 1]] = [nums[j + 1], nums[j]]
       }
     }
-    return res
   }
-  return mergeSort(nums);
+  return nums;
 }
 // @lc code=end
 
