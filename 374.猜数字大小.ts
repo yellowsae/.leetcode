@@ -15,30 +15,51 @@
  */
 
 
+// function guessNumber(n: number): number {
+//   // 二分搜索 
+//   let low = 1  // 最小范围 
+//   let high = n // 最大范围
+
+//   // 循环 
+//   while (low <= high) {
+//     // 中间值 
+//     let mid = Math.floor((low + high) / 2)
+
+//     // 调用 guess 取 猜测的值 
+//     let res = guess(mid)
+
+//     // 判断 
+//     if (res === 0) {
+//       return mid
+//     } else if (res === 1) {
+//       // 猜大了 -> 二分 
+//       low = mid + 1
+//     } else {
+//       // 猜小了 -> 二分 
+//       high = mid - 1
+//     }
+//   }
+// };
+
+
+// 二分 - 递归 
+
 function guessNumber(n: number): number {
-  // 二分搜索 
-  let low = 1  // 最小范围 
-  let high = n // 最大范围
+  const rec = (low, high) => {
+    if (low > high) return
 
-  // 循环 
-  while (low <= high) {
     // 中间值 
-    let mid = Math.floor((low + high) / 2)
-
-    // 调用 guess 取 猜测的值 
-    let res = guess(mid)
-
-    // 判断 
+    const mid = Math.floor((low + high) / 2)
+    const res = guess(mid)
     if (res === 0) {
       return mid
     } else if (res === 1) {
-      // 猜大了 -> 二分 
-      low = mid + 1
+      return rec(mid + 1, high)
     } else {
-      // 猜小了 -> 二分 
-      high = mid - 1
+      return rec(low, mid - 1)
     }
   }
+  return rec(1, n)
 };
 // @lc code=end
 
