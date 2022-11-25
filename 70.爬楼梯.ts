@@ -14,21 +14,38 @@
 
 
 
-// 
+// // 
+// function climbStairs(n: number): number {
+//   // 1. 定义存储数据的 dp 数组
+//   let memo: number[] = [];
+
+//   // 记录步数 
+//   memo[1] = 1;
+//   memo[2] = 2;
+
+//   // 3. 循环 n 次
+//   for (let i = 3; i <= n; i++) {
+//     memo[i] = memo[i - 1] + memo[i - 2];
+//   }
+
+//   return memo[n]
+// };
+
+
+// 优化 - 空间复杂度  
 function climbStairs(n: number): number {
-  // 1. 定义存储数据的 dp 数组
-  let memo: number[] = [];
-
-  // 记录步数 
-  memo[1] = 1;
-  memo[2] = 2;
-
+  if (n === 1) return 1;
+  if (n === 2) return 2;
+  let dp0 = 1;
+  let dp1 = 2;
   // 3. 循环 n 次
   for (let i = 3; i <= n; i++) {
-    memo[i] = memo[i - 1] + memo[i - 2];
+    let temp = dp0
+    dp0 = dp1;
+    dp1 = temp + dp1;
   }
 
-  return memo[n]
+  return dp1
 };
 // @lc code=end
 
